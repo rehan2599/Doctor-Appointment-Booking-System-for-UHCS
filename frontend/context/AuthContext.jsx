@@ -1,63 +1,53 @@
-// AuthContext.jsx
-
-import React, { createContext, useContext, useEffect, useReducer } from "react";
+import {useContext, useEffect, useReducer} from "react" ; 
 
 const initialState = {
-  user: localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')) : null,
-  role: localStorage.getItem('role') || null,
-  token: localStorage.getItem('token') || null,
+    user:null,
+    role:null,
+    token:null
+
 };
 
-export const AuthContext = createContext(initialState);
+const authContext = createContext(initialState);
 
-const authReducer = (state, action) => {
-  switch (action.type) {
-    case "LOGIN_START":
-      return {
-        user: null,
-        role: null,
-        token: null,
-      };
+const authReader = (state, action) => {
 
-    case "LOGIN_SUCCESS":
-      return {
-        user: action.payload.user,
-        token: action.payload.token,
-        role: action.payload.role,
-      };
+    switch (action.type) {
+        case 'LOGIN_START' :
 
-    case "LOGOUT":
-      return {
-        user: null,
-        role: null,
-        token: null,
-      };
+        return {
+            user: null,
+            role: null,
+            token: null,
 
-    default:
-      return state;
-  }
-};
+        };
 
-export const AuthContextProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(authReducer, initialState);
+        case "LOGIN_SUCCESS":
+            return {
+                user:action.payload.user,
+                token:action.payload.token,
+                role:action.payload.role,
+            }
 
-  useEffect(() => {
-    localStorage.setItem('user', JSON.stringify(state.user));
-    localStorage.setItem('token', state.token);
-    localStorage.setItem('role', state.role);
-  }, [state.user, state.token, state.role]);
+            case 'LOGOUT' :
 
-  return (
-    <AuthContext.Provider
-      value={{
-        user: state.user,
-        token: state.token,
-        role: state.role,
-        dispatch,
-      }}
-    >
-      {children}
-    </AuthContext.Provider>
-  );
-};
+        return {
+            user: null,
+            role: null,
+            token: null,
 
+        };
+
+        default:
+            return state;
+            
+    }
+
+}
+
+export const AuthContextProvider = ({children}) => {
+    const [state,dispatch] = useReducer(authReducer, initialState)
+
+    return <authContext.Provider value = {{user:state.user, token:state.token, role:state.role, dispatch}}>
+
+    </authContext.Provider>
+}
