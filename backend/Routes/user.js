@@ -1,32 +1,15 @@
-// Final User issue resolved on authentication
+import {useContext, useEffect, useReducer} from 'react';
+import {useNavigate} from 'react-router-dom';
+import {authContext} from '../context/AuthContext'
 
-import express from "express";
-import {
-  updateUser,
-  deleteUser,
-  getSingleUser,
-  getAllUser,
-  getUserProfile,
-  getMyAppointments
-} from "../Controllers/userController.js";
-// import { authenticate, restrict } from "../auth/verifyToken.js";
-import { authenticate, restrict } from "../auth/verifyToken.js";
+const ProtectedRoute = ({children, allowedRoles}) => {
 
-const router = express.Router();
+    const {token, role} = useContext(authContext)
 
+    const isAllowed = allowedRoles.includes(role)
+    const accessibleRoute = token && isAllowed ? children : <Navigate to = '/login' replace={true} />
 
-// Prev no auth and restriction here 
-// router.get('/:id', getSingleUser);
-// router.get('/', getAllUser);
-// router.put('/:id', updateUser);
-// router.delete('/:id', deleteUser);
+    return accessibleRoute;
+}; 
 
-
-// We will use below restricts only after AUTH creation
-router.get('/:id', authenticate, restrict(['patient']), getSingleUser);
-router.get('/', authenticate, restrict(['admin']),getAllUser);
-router.put('/:id', authenticate, restrict(['patient']), updateUser);
-router.delete('/:id', authenticate, restrict(['patient']), deleteUser);
-router.get('/profile/me', authenticate, restrict(['patient']), getUserProfile);
-router.delete('/appointments/my-appointments', authenticate, restrict(['patient']), getMyAppointments);
-export default router;
+export default ProtectedRoute
