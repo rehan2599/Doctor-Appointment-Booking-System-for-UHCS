@@ -15,7 +15,7 @@ const app = express();
 const port = process.env.PORT || 6000;
 
 const corsOptions = {
-    origin: "https://magical-stroopwafel-d74c45.netlify.app/"
+    origin: "https://iridescent-kitsune-8b6be0.netlify.app/"
 };
 
 app.get('/', (req, res) => {
