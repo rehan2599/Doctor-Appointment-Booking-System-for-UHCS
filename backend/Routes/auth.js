@@ -1,4 +1,5 @@
-import express from 'express'; // Add quotes around 'express'
+// auth JS all issues resolved
+import express from 'express'; 
 import { register, login } from '../Controllers/authController.js';
 
 const router = express.Router();
