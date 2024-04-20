@@ -1,11 +1,11 @@
 // AuthContext.jsx
 
-import { createContext, useContext, useEffect, useReducer } from "react";
+import React, { createContext, useContext, useEffect, useReducer } from "react";
 
 const initialState = {
-  user: null,
-  role: null,
-  token: null,
+  user: localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')) : null,
+  role: localStorage.getItem('role') || null,
+  token: localStorage.getItem('token') || null,
 };
 
 export const AuthContext = createContext(initialState);
@@ -41,6 +41,12 @@ const authReducer = (state, action) => {
 export const AuthContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(authReducer, initialState);
 
+  useEffect(() => {
+    localStorage.setItem('user', JSON.stringify(state.user));
+    localStorage.setItem('token', state.token);
+    localStorage.setItem('role', state.role);
+  }, [state.user, state.token, state.role]);
+
   return (
     <AuthContext.Provider
       value={{
@@ -54,3 +60,4 @@ export const AuthContextProvider = ({ children }) => {
     </AuthContext.Provider>
   );
 };
+
