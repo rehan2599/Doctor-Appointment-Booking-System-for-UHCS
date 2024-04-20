@@ -22,11 +22,11 @@ const About = () => {
                         Proud to be one of the nations best 
                     </h2>
                     <p className='text_para'>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+                    MediCare is dedicated to making healthcare accessible for everyone. Founded by health professionals and tech experts, our platform simplifies finding and booking healthcare services. We emphasize user-friendly design and efficient health management, helping patients easily navigate their healthcare needs. 
                     </p>
 
                     <p className='text_para mt-[30px]'>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    We are committed to enhancing the healthcare experience by integrating features like telemedicine, personalized health management, and real-time monitoring. MediCare upholds the highest standards of service and security, continually adapting to feedback and technological advances to ensure quality healthcare is just a click away.
                     </p>
 
                     <Link to='/'>
