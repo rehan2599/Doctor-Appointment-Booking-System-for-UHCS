@@ -15,7 +15,7 @@ const app = express();
 const port = process.env.PORT || 6000;
 
 const corsOptions = {
-    origin: true
+    origin: 'https://majestic-basbousa-72134f.netlify.app'
 };
 
 app.get('/', (req, res) => {
@@ -39,7 +39,7 @@ const connectDB = async () => {
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors(corsOptions));
-app.use(cors(corsOptions));
+
 
 // Routes
 app.use('/api/v1/auth', authRoute); // Route for authentication
