@@ -37,7 +37,7 @@ const Home = () => {
                     We help patients live a healthy, longer life.
                   </h1>
                   <p className='text_para'>
-                  Welcome to MediCare, your go-to online platform for finding top healthcare professionals and booking appointments effortlessly. Our mission is to provide easy access to quality medical care. With HealthConnect, you can browse our extensive directory of verified doctors, view real-time availability, and book appointments securely and conveniently from home. Our platform also offers transparent patient reviews and valuable health resources to help you make informed decisions. Whether you need a general practitioner or a specialist, HealthConnect connects you to the right healthcare provider with just a few clicks. Sign up today and experience hassle-free healthcare at your fingertips!
+                  Welcome to MediCare, your go-to online platform for finding top healthcare professionals and booking appointments effortlessly. Our mission is to provide easy access to quality medical care. With MediCare, you can browse our extensive directory of verified doctors, view real-time availability, and book appointments securely and conveniently from home. Our platform also offers transparent patient reviews and valuable health resources to help you make informed decisions. Whether you need a general practitioner or a specialist, MediCare connects you to the right healthcare provider with just a few clicks. Sign up today and experience hassle-free healthcare at your fingertips!
                   </p>
 
                   <button className='btn'> Request an Appointment</button>
