@@ -35,10 +35,7 @@ const DoctorDetails = () => {
                 </div>
 
                 <p className="text_para text-[14px] leading-6 md:text-[15px] lg:max-w-[390px]">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Obcaecati error quod ipsam dicta, maiores earum quo sequi unde
-                  voluptatibus quis tempore, ex quisquam autem sit iure aperiam.
-                  Temporibus, quisquam odio?
+                Dr. Rehan Khan is a skilled and compassionate surgeon with over a decade of experience specializing in general surgery. Board certified and dedicated to upholding the highest standards of medical practice, Dr. Khan is known for his precise surgical techniques and a patient-centered approach to care. His expertise extends to performing advanced procedures, managing emergency cases, and providing comprehensive post-operative care. At City Health Clinic, Dr. Khan is committed to improving his patients' outcomes through meticulous attention to detail and a deep understanding of surgical best practices. His dedication to his profession and his patients ensures that each individual receives the best possible care during their critical health moments.
                 </p>
               </div>
             </div>
