@@ -3,7 +3,8 @@ import {
     updateDoctor,
     deleteDoctor,
     getSingleDoctor,
-    getAllDoctor
+    getAllDoctor,
+    getDoctorProfile
 } from "../Controllers/doctorController.js";
 import { authenticate, restrict } from "../auth/verifyToken.js";
 import revierRouter from './review.js';
@@ -17,5 +18,7 @@ router.get('/:id', getSingleDoctor);
 router.get('/', getAllDoctor);
 router.put('/:id', authenticate, restrict(['doctor']), updateDoctor);
 router.delete('/:id', authenticate, restrict(['doctor']), deleteDoctor);
+
+router.get('/profile/me', authenticate, restrict(['doctor']), getDoctorProfile);
 
 export default router;
