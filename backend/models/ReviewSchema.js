@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import DoctorSchema from "./DoctorSchema.js";
+import Doctor from "./DoctorSchema.js";
 import { TopologyDescriptionChangedEvent } from "mongodb";
 
 
