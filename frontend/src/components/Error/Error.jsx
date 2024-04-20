@@ -1,9 +1,25 @@
-import React from 'react'
+const upload_preset = import.meta.env.VITE_UPLOAD_PRESET
+const cloud_name = import.meta.env.VITE_CLOUD_NAME
 
-export const Error = ({errMessage}) => {
-  return <div className='flex items-center justify-center w-full h0='>
-    <h3 className="text-headingColor text=[20px] leading-[30px] font-semibold">
-        {errMessage}
-    </h3>
-  </div>
+const uploadImageToCloudinary = async file => {
+
+    const uploadData = new FormData()
+
+    uploadData.append('file', file)
+    uploadData.append('upload_present', upload_preset)
+    uploadData.append('cloud_name', cloud)
+
+    const res =await fetch('http://api.cloudinary.com/v1_1/${cloud_name}/image/upload',{
+        method:'post',
+        body:uploadData
+    })
+
 }
+
+const data = await res.json();
+
+return data;
+
+
+
+export default uploadImageToCloudinary
