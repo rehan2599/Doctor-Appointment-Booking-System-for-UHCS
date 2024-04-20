@@ -10,6 +10,18 @@ export default {
         irisBlueColor: "#01B5C5",
         headingColor: "#181A1E",
         textColor: "#4E545F",
+        indigo: {
+          '50': '#e0e8f9',
+          '100': '#bed0f7',
+          '200': '#98aeeb',
+          '300': '#7b93db',
+          '400': '#647acb',
+          '500': '#4c63b6',   // This is indigo-500
+          '600': '#4055a8',
+          '700': '#35469c',
+          '800': '#2d3a8c',
+          '900': '#19216c',
+        },
       },
 
       boxShadow: {

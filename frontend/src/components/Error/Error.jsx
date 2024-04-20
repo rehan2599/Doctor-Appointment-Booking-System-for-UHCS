@@ -7,3 +7,4 @@ export const Error = ({errMessage}) => {
     </h3>
   </div>
 }
+export default Error; 
