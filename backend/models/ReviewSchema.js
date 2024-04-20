@@ -1,4 +1,7 @@
 import mongoose from "mongoose";
+import DoctorSchema from "./DoctorSchema.js";
+import { TopologyDescriptionChangedEvent } from "mongodb";
+
 
 const reviewSchema = new mongoose.Schema(
   {
@@ -38,21 +41,24 @@ reviewSchema.statics.calcAverageRatings = async function(doctorId){
 // this points the current review 
   const stats = await this.aggregate([
     { 
-      $match: {doctor: doctorId},
+      $match: {doctor:doctorId},
     },
     {
       $group: {
       _id: '$doctor',
-      numOfRating: {$sum: 1 }, 
+      numOfRating: {$sum:1}, 
       avgRating: {$avg: '$rating'},
-    },
-    },
+    }
+    }
 ]);
- console.log(stats);
+
+  await Doctor.findByIdAndUpdate(doctorId, {
+    totalRating: stats[0].numOfRating, 
+    avgRating:stats[0].avgRating,
+  });
 };
 
   reviewSchema.post('save', function() {
-  
   this.constructor.calcAverageRatings(this.doctor)
 
 });
