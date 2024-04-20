@@ -12,7 +12,7 @@ dotenv.config();
 console.log('JWT Secret Key:', process.env.JWT_SECRET_KEY);
 
 const app = express();
-const port = process.env.PORT || 8000;
+const port = process.env.PORT || 6000;
 
 const corsOptions = {
     origin: true
@@ -40,7 +40,6 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(cors(corsOptions));
 app.use(cors(corsOptions));
-
 
 // Routes
 app.use('/api/v1/auth', authRoute); // Route for authentication

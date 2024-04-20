@@ -12,6 +12,8 @@ export const authenticate = async (req, res, next) => {
   }
 
   try {
+
+    // console.log (authToken);
     const token = authToken.split(" ")[1];
     const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);
 
@@ -19,6 +21,7 @@ export const authenticate = async (req, res, next) => {
     req.role = decoded.role;
 
     next();
+
   } catch (err) {
     res.status(401).json({
       success: false,
@@ -29,25 +32,47 @@ export const authenticate = async (req, res, next) => {
 
 export const restrict = roles => async (req, res, next) => {
   const userId = req.userId;
+  
   let user;
 
-  try {
-    user = await User.findById(userId);
-    if (!user) {
-      user = await Doctor.findById(userId);
-    }
-    
-    if (!user || !roles.includes(user.role)) {
+  const patient = await User.findById(userId)
+  const doctor = await Doctor.findById(userId)
+
+
+  if(patient){
+    user = patient;
+  }
+  if (doctor){
+    user = doctor;
+  }
+
+  if ( !roles.includes(user.role)) {
       return res
-        .status(401)
-        .json({ success: false, message: "You're not authorized" });
+      .status(401)
+      .json({ success: false, message: "You're not authorized" });
     }
 
+
+    //ALTERNATIVE RESTRICT TO REMEBER WHEN DEBUGGING ANY ERROR ON LATER STAGES 
+  // try {
+  //   user = await User.findById(userId);
+  //   if (!user) {
+  //     user = await Doctor.findById(userId);
+  //   }
+    
+  //   if (!user || !roles.includes(user.role)) {
+  //     return res
+  //       .status(401)
+  //       .json({ success: false, message: "You're not authorized" });
+  //   }
+
     next();
-  } catch (err) {
-    res.status(500).json({
-      success: false,
-      message: "Error accessing the database"
-    });
-  }
+
+
+  // } catch (err) {
+  //   res.status(500).json({
+  //     success: false,
+  //     message: "Error accessing the database"
+  //   });
+  // }
 };

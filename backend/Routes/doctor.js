@@ -12,7 +12,7 @@ import reviewRouter from './review.js';
 
 const router = express.Router();
 
-//nested routes
+
 // Prev no auth and restriction here 
 // router.get('/:id', getSingleDoctor);
 // router.get('/', getAllDoctor);
@@ -21,7 +21,10 @@ const router = express.Router();
 
 
 // We will use below restricts only after AUTH creation
-// router.use('/:doctorId/reviews', revierRouter);
+
+// ++ nested routes
+router.use('/:doctorId/reviews', reviewRouter);
+
 router.get('/:id', getSingleDoctor);
 router.get('/', getAllDoctor);
 router.put('/:id', authenticate, restrict(['doctor']), updateDoctor);

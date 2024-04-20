@@ -63,6 +63,7 @@ export const login = async (req, res) => {
     const { email, password } = req.body;
     try {
         let user = null;
+
         const patient = await User.findOne({ email });
         const doctor = await Doctor.findOne({ email });
 
@@ -76,25 +77,32 @@ export const login = async (req, res) => {
 
         // Check if user exists or not
         if (!user) {
-            console.error('User not found for email:', email); // Add this line to log user not found error
+            console.error('User not found for email:', email); // log user not found error
             return res.status(404).json({ message: "User not found" });
         }
 
         // Compare password
-        const isPasswordMatch = await bcrypt.compare(req.body.password, user.password);
+        const isPasswordMatch = await bcrypt.compare(
+            req.body.password, 
+            user.password);
 
         if (!isPasswordMatch) {
-            console.error('Invalid password for user:', email); // Add this line to log invalid password error
+            console.error('Invalid password for user:', email); //  log invalid password error
             return res.status(404).json({ status: false, message: "Invalid Credentials" });
         }
 
         // Get Token
         const token = generateToken(user);
-        const { password, role, appointments, ...rest } = user._doc;
+        const { password, role, appointments, ... rest } = user._doc;
 
-        res.status(200).json({ status: true, message: "Successfully logged In", token, data: { ...rest }, role });
+        res
+        .status(200)
+        .json({ status: true, message: "Successfully logged In", token, data: { ... rest }, role });
     } catch (error) {
+
         console.error('Error during login:', error); // log other errors
-        res.status(500).json({ success: false, message: 'Failed to Login' });
+        res
+        .status(500)
+        .json({ success: false, message: 'Failed to Login' });
     }
 };
